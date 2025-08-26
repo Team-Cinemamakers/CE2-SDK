@@ -1,4 +1,8 @@
 extends Node
 
-signal psych_chart_loaded(content)
-signal psych_chart_converted(content)
+enum ChartSource {
+	PSYCH_OLD
+}
+
+signal chart_loaded(content:String, chart_type:ChartSource)
+signal chart_converted(content:Dictionary)

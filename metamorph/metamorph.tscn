@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdk1m43gidqoj"]
+[gd_scene load_steps=4 format=3 uid="uid://cdk1m43gidqoj"]
 
-[ext_resource type="Script" uid="uid://fo0e7etxsdvd" path="res://metamorph.gd" id="1_rl87p"]
-[ext_resource type="Script" uid="uid://dguvnufjch6q8" path="res://info_parser.gd" id="2_o086m"]
+[ext_resource type="Script" uid="uid://dguvnufjch6q8" path="res://scripts/info_parser.gd" id="2_o086m"]
+[ext_resource type="Script" uid="uid://2sklqwk0ytlx" path="res://scripts/file_functions.gd" id="3_uj7qd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o086m"]
 
 [node name="Metamorph" type="Control"]
 layout_mode = 3
@@ -10,17 +12,169 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rl87p")
 
-[node name="LoadPsychButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 256.0
-offset_bottom = 46.0
-text = "Convert Psych Chart to CE2 Chart"
+[node name="Info Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.596
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.407959
+grow_horizontal = 0
+script = ExtResource("2_o086m")
 
-[node name="OpenDialog" type="FileDialog" parent="LoadPsychButton"]
+[node name="Song Info" type="Label" parent="Info Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.035
+offset_bottom = 5.32
+text = "Song Info"
+label_settings = SubResource("LabelSettings_o086m")
+horizontal_alignment = 1
+
+[node name="SongName" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.032
+anchor_top = 0.071
+anchor_right = 0.415
+anchor_bottom = 0.133
+offset_left = 0.119999
+offset_top = -0.00800323
+offset_right = 0.0249939
+offset_bottom = -0.183998
+placeholder_text = "Song Name"
+emoji_menu_enabled = false
+
+[node name="BPM" type="SpinBox" parent="Info Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.518
+anchor_top = 0.071
+anchor_right = 0.738
+anchor_bottom = 0.133
+offset_left = 0.12999
+offset_top = -0.00800323
+offset_right = -0.170013
+offset_bottom = -0.183998
+max_value = 300.0
+allow_greater = true
+suffix = "BPM"
+
+[node name="ScrollSpeed" type="SpinBox" parent="Info Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.518
+anchor_top = 0.174
+anchor_right = 0.963
+anchor_bottom = 0.236
+offset_left = 0.12999
+offset_top = 0.247993
+offset_right = 0.204987
+offset_bottom = 0.071991
+max_value = 5.0
+step = 0.1
+allow_greater = true
+prefix = "Scroll Speed:"
+
+[node name="Stage" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.032
+anchor_top = 0.174
+anchor_right = 0.415
+anchor_bottom = 0.236
+offset_left = 0.119999
+offset_top = 0.247993
+offset_right = 0.0249786
+offset_bottom = 0.071991
+placeholder_text = "Stage Name"
+emoji_menu_enabled = false
+
+[node name="InstPath" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.032
+anchor_top = 0.275
+anchor_right = 0.415
+anchor_bottom = 0.336
+offset_left = 0.119999
+offset_top = -0.199997
+offset_right = 0.0249786
+offset_bottom = 0.271988
+placeholder_text = "Instrumental File"
+emoji_menu_enabled = false
+
+[node name="VocalsPath" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.032
+anchor_top = 0.336
+anchor_right = 0.415
+anchor_bottom = 0.398
+offset_left = 0.119999
+offset_top = 0.271988
+offset_right = 0.0249786
+offset_bottom = 0.0959778
+placeholder_text = "Vocals File"
+emoji_menu_enabled = false
+
+[node name="PlayerChar" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.518
+anchor_top = 0.275
+anchor_right = 0.901
+anchor_bottom = 0.336
+offset_left = 0.12999
+offset_top = -0.199997
+offset_right = 0.0350037
+offset_bottom = 0.271988
+placeholder_text = "Player Character"
+emoji_menu_enabled = false
+
+[node name="OpponentChar" type="LineEdit" parent="Info Panel"]
+layout_mode = 2
+anchor_left = 0.518
+anchor_top = 0.336
+anchor_right = 0.901
+anchor_bottom = 0.398
+offset_left = 0.12999
+offset_top = 0.271988
+offset_right = 0.0350037
+offset_bottom = 0.0959778
+placeholder_text = "Opponent Character"
+emoji_menu_enabled = false
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.595
+anchor_bottom = 0.048
+offset_left = 4.0
+offset_right = -0.440063
+offset_bottom = -0.104
+
+[node name="File" type="PopupMenu" parent="MenuBar"]
+size = Vector2i(521, 170)
+item_count = 6
+item_0/text = "Imports"
+item_0/id = 5
+item_0/separator = true
+item_1/text = "Import Psych Chart (Pre 1.0)"
+item_1/id = 0
+item_2/text = "Exports"
+item_2/id = 999
+item_2/separator = true
+item_3/text = "Export CE2 Chart"
+item_3/id = 1
+item_4/text = "Options"
+item_4/id = 999
+item_4/separator = true
+item_5/text = "Pretty Output (Add newlines)"
+item_5/checkable = 1
+item_5/checked = true
+item_5/id = 2
+script = ExtResource("3_uj7qd")
+
+[node name="OpenDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
 title = "Open a File"
 position = Vector2i(225, 105)
 ok_button_text = "Open"
@@ -30,28 +184,11 @@ access = 2
 filters = PackedStringArray("*.json")
 use_native_dialog = true
 
-[node name="SaveDialog" type="FileDialog" parent="LoadPsychButton"]
+[node name="SaveDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
 auto_translate_mode = 1
 position = Vector2i(225, 105)
 dialog_hide_on_ok = true
 access = 2
 filters = PackedStringArray("*.json")
 use_native_dialog = true
-
-[node name="Info Panel" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -465.0
-offset_bottom = 648.0
-grow_horizontal = 0
-script = ExtResource("2_o086m")
-
-[node name="SongName" type="Label" parent="Info Panel"]
-layout_mode = 2
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 193.0
-offset_bottom = 46.0

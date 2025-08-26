@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Events="*res://scripts/events.gd"
 Converter="*res://scripts/converter.gd"
+Data="*res://scripts/data.gd"
+
+[display]
+
+window/stretch/aspect="keep_width"
 
 [dotnet]
 

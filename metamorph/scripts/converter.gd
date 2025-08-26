@@ -1,12 +1,12 @@
 extends Node
 
-func _ready():
-	Events.psych_chart_loaded.connect(on_psych_chart_loaded)
-# ============================
-# PSYCH TO CE2 CHART CONVERTER
-# ============================
-func on_psych_chart_loaded(content):
-	var song = JSON.parse_string(content).song
+static func psych_old_to_ce2(content):
+	var parsed_content:Dictionary = JSON.parse_string(content)
+	if !parsed_content.has("song"):
+		print("Selected file is not a song")
+		return null
+		
+	var song = parsed_content.song
 	
 	# New object that holds the converted song
 	var converted = {}
@@ -158,5 +158,4 @@ func on_psych_chart_loaded(content):
 		}
 	]
 	
-	var json = JSON.stringify(converted, "\t", false)
-	Events.psych_chart_converted.emit(json)
+	return converted
