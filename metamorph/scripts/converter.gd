@@ -116,19 +116,22 @@ static func psych_old_to_ce2(content):
 		for note in section.sectionNotes:
 			var noteTime = note[0]
 			var noteData = note[1]
+			var noteLength = note[2]
 			# Player section
 			if section.mustHitSection:
 				if noteData <= 3:
 					playerNotes.push_back({
 						"time": noteTime,
 						"type": 0,
-						"value": noteData
+						"value": noteData,
+						"length": noteLength
 					})
 				else:
 					opponentNotes.push_back({
 						"time": noteTime,
 						"type": 0,
-						"value": noteData - 4
+						"value": noteData - 4,
+						"length": noteLength
 					})
 			# Opponent section
 			else:
@@ -136,13 +139,15 @@ static func psych_old_to_ce2(content):
 					opponentNotes.push_back({
 						"time": noteTime,
 						"type": 0,
-						"value": noteData
+						"value": noteData,
+						"length": noteLength
 					})
 				else:
 					playerNotes.push_back({
 						"time": noteTime,
 						"type": 0,
-						"value": noteData - 4
+						"value": noteData - 4,
+						"length": noteLength
 					})
 				
 				
