@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdk1m43gidqoj"]
+
+[ext_resource type="Script" uid="uid://fo0e7etxsdvd" path="res://metamorph.gd" id="1_rl87p"]
+[ext_resource type="Script" uid="uid://dguvnufjch6q8" path="res://info_parser.gd" id="2_o086m"]
+
+[node name="Metamorph" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rl87p")
+
+[node name="LoadPsychButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 256.0
+offset_bottom = 46.0
+text = "Convert Psych Chart to CE2 Chart"
+
+[node name="OpenDialog" type="FileDialog" parent="LoadPsychButton"]
+title = "Open a File"
+position = Vector2i(225, 105)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="SaveDialog" type="FileDialog" parent="LoadPsychButton"]
+auto_translate_mode = 1
+position = Vector2i(225, 105)
+dialog_hide_on_ok = true
+access = 2
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="Info Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -465.0
+offset_bottom = 648.0
+grow_horizontal = 0
+script = ExtResource("2_o086m")
+
+[node name="SongName" type="Label" parent="Info Panel"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 193.0
+offset_bottom = 46.0
