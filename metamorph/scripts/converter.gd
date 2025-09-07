@@ -163,4 +163,9 @@ static func psych_old_to_ce2(content):
 		}
 	]
 	
+	# Temporary, no real event porting for now, but not having any events field WILL crash the engine
+	converted["events"] = [
+		
+	]
+	
 	return converted
