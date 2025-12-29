@@ -10,24 +10,19 @@ config_version=5
 
 [application]
 
-config/name="Metamorph"
-run/main_scene="uid://cdk1m43gidqoj"
-config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
+config/name="Chart Editor"
+run/main_scene="res://Scenes/ChartEditorMain.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Events="*res://scripts/events.gd"
-Converter="*res://scripts/converter.gd"
-Data="*res://scripts/data.gd"
 
 [display]
 
-window/stretch/aspect="keep_width"
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [dotnet]
 
-project/assembly_name="Metamorph"
+project/assembly_name="Chart Editor"
 
 [rendering]
 

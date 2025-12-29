@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://de8qh1yxtej7k"]
+
+[node name="ChartSquare" type="ColorRect"]
+offset_left = 290.0
+offset_top = 85.0
+offset_right = 340.0
+offset_bottom = 135.0
+metadata/StepVal = 0

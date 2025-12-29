@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ct7w0wj8hfw5w"]
+
+[node name="StrumlineBGPanel" type="Panel"]
+offset_left = 380.0
+offset_top = 48.0
+offset_right = 580.0
+offset_bottom = 768.0

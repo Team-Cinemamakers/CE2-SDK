@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhke1us4uvufr"]
+
+[ext_resource type="Script" uid="uid://bppv0nd6wfxgr" path="res://Scenes/MainChart.gd" id="1_ab1b5"]
+[ext_resource type="PackedScene" uid="uid://de8qh1yxtej7k" path="res://Objects/chart_square.tscn" id="2_5k3v6"]
+
+[node name="Origin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ab1b5")
+
+[node name="MainEditorPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 940.0
+offset_right = 1280.0
+offset_bottom = 520.0
+
+[node name="Label" type="Label" parent="MainEditorPanel"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 201.0
+offset_bottom = 23.0
+text = "CHART SETTINGS"
+
+[node name="Button" type="Button" parent="MainEditorPanel"]
+layout_mode = 0
+offset_left = 278.0
+offset_right = 309.0
+offset_bottom = 31.0
+text = "-"
+
+[node name="Button2" type="Button" parent="MainEditorPanel"]
+layout_mode = 0
+offset_left = 309.0
+offset_right = 340.0
+offset_bottom = 31.0
+text = "X"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 127.0
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="OptionButton"]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 34.0
+text = "FILE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChartSquare" parent="." instance=ExtResource("2_5k3v6")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 50.0
+offset_bottom = 50.0
