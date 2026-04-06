@@ -16,6 +16,6 @@ func _open_chart():
 	Globals.load_chart(songList.get_item_text(songList.get_selected_items()[0]))
 	# print("chart data: "+str(Globals.songJson))
 	_cancel()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+	
+func _process(_delta: float) -> void:
 	pass

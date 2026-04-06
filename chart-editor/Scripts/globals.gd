@@ -24,13 +24,13 @@ var curStep:float
 var curBeat:float
 var curPosition:float
 
-var chartReady:bool = false
+var chart_ready:bool = false
 
 var hovering_over_note:bool = false
-var notes_hovered:Array[Node2D]
+var notes_hovered:Array[Control]
 
 var hovering_over_strumline:bool = false
-var strumlines_hovered:Array[TextureRect]
+var strumlines_hovered:Array[Strumline]
 
 signal chartLoaded
 signal noteSelected(data)
@@ -87,10 +87,12 @@ func load_chart(song_name:String, difficulty:String = ""):
 	var json_as_text = FileAccess.get_file_as_string(file)
 	songJson = JSON.parse_string(json_as_text)
 	songName = song_name
+	
+	chart_ready = true
 	chartLoaded.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (strumlines_hovered.is_empty()):
 		hovering_over_strumline = false
 	else:
@@ -99,7 +101,6 @@ func _process(delta: float) -> void:
 	notes_hovered = notes_hovered.filter(func(obj): return is_instance_valid(obj)) # purge invalid notes
 
 	if (notes_hovered.is_empty()):
-		await Input.is_action_just_released("left click")
 		get_tree().create_timer(0.1).timeout.connect(_fah)
 	else:
 		hovering_over_note = true
