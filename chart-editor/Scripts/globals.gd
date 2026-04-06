@@ -88,7 +88,10 @@ func load_chart(song_name:String, difficulty:String = ""):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	notes_hovered = notes_hovered.filter(func(obj): return is_instance_valid(obj)) # purge invalid notes
+
 	if (notes_hovered.is_empty()):
+		await Input.is_action_just_released("left click")
 		get_tree().create_timer(0.1).timeout.connect(_fah)
 	else:
 		hovering_over_note = true
