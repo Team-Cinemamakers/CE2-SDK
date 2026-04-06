@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://db4vpn6fvckas"]
+
+[ext_resource type="Texture2D" uid="uid://du3uqjx1l7ydr" path="res://Assets/PNGs/chart_squares.png" id="1_0ihlt"]
+[ext_resource type="Script" uid="uid://chusao6fkkqvg" path="res://Objects/chart_square_new.gd" id="2_iee61"]
+
+[node name="ChartSquareNew" type="TextureRect" unique_id=1621744063]
+offset_left = 290.0
+offset_top = 85.0
+offset_right = 340.0
+offset_bottom = 135.0
+texture = ExtResource("1_0ihlt")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("2_iee61")

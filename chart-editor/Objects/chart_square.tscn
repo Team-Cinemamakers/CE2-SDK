@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://de8qh1yxtej7k"]
 
-[node name="ChartSquare" type="ColorRect"]
+[node name="ChartSquare" type="ColorRect" unique_id=228214226]
 offset_left = 290.0
 offset_top = 85.0
 offset_right = 340.0

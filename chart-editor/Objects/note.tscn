@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://rnomr540uit0"]
+
+[ext_resource type="Texture2D" uid="uid://b75g6ogwbxn4d" path="res://Assets/PNGs/note.png" id="1_hr6jr"]
+[ext_resource type="Script" uid="uid://bssfbvy05xaio" path="res://Objects/note.gd" id="2_akwul"]
+
+[node name="Note" type="Node2D" unique_id=1171979459]
+script = ExtResource("2_akwul")
+
+[node name="sustain" type="ColorRect" parent="." unique_id=1139271271]
+offset_left = 20.0
+offset_top = 25.0
+offset_right = 32.0
+offset_bottom = 25.0
+
+[node name="notebase" type="Sprite2D" parent="." unique_id=628451454]
+scale = Vector2(0.3205128, 0.3144654)
+texture = ExtResource("1_hr6jr")
+centered = false
+hframes = 4
