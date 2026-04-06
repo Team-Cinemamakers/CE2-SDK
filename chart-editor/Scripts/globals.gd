@@ -29,6 +29,9 @@ var chartReady:bool = false
 var hovering_over_note:bool = false
 var notes_hovered:Array[Node2D]
 
+var hovering_over_strumline:bool = false
+var strumlines_hovered:Array[TextureRect]
+
 signal chartLoaded
 signal noteSelected(data)
 # Called when the node enters the scene tree for the first time.
@@ -88,6 +91,11 @@ func load_chart(song_name:String, difficulty:String = ""):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (strumlines_hovered.is_empty()):
+		hovering_over_strumline = false
+	else:
+		hovering_over_strumline = true
+		
 	notes_hovered = notes_hovered.filter(func(obj): return is_instance_valid(obj)) # purge invalid notes
 
 	if (notes_hovered.is_empty()):

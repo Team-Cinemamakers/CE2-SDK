@@ -13,4 +13,9 @@ func _process(delta: float) -> void:
 	
 	if ((get_global_mouse_position().x >= position.x && get_global_mouse_position().x <= position.x + size.x) && (get_global_mouse_position().y >= position.y && get_global_mouse_position().y <= position.y + size.y)):
 		mouse_on = true
-	else: mouse_on = false
+		if (not Globals.strumlines_hovered.has(self)):
+			Globals.strumlines_hovered.append(self)
+	else:
+		mouse_on = false
+		if (Globals.strumlines_hovered.has(self)):
+			Globals.strumlines_hovered.remove_at(Globals.strumlines_hovered.find(self))

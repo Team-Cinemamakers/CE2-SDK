@@ -125,6 +125,8 @@ func _process(delta: float) -> void:
 		Globals.curBeat = Globals.curStep / 4
 		posData.text = "curBeat: " + str(Globals.curBeat) + "\ncurStep: " + str(Globals.curStep) + "\nposition: " + str(Globals.curPosition)
 		
+		notePrev.visible = Globals.hovering_over_strumline
+		
 		for i in range(strumlines.size()):
 			if (strumlines[i].mouse_on):
 				notePrev.position.x = floor(get_global_mouse_position().x / 50) * 50
