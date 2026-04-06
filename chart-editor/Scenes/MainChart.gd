@@ -78,7 +78,7 @@ func _chart_loaded():
 		var curStrumlineData = Globals.songJson["info"]["strumlines"][i]
 		generateStrumline(curStrumlineData["strumNotes"].size())
 		generateNotes(i)
-		strumcount += curStrumlineData["strumNotes"].size()
+		strumcount += curStrumlineData["strumNotes"].size() + 1
 		
 	$MainEditorPanel.visible = true
 	filedropdown.get_popup().set_item_disabled(filedropdown.get_popup().get_item_index(3), false)
@@ -134,7 +134,7 @@ func _process(delta: float) -> void:
 				else:
 					notePrev.position.y = (floor(get_global_mouse_position().y / 50) * 50) - (int(Utils.msToYPos(Globals.curPosition ,Globals.songJson["info"]["bpm"])) % 50)
 				
-				notePrev.get_child(0).frame = int(get_global_mouse_position().x / 50) % 4
+				notePrev.get_child(0).frame = int((get_global_mouse_position().x - strumlines[i].position.x) / 50) % 4
 				
 				# CREATE NOTE
 				
@@ -145,13 +145,13 @@ func _process(delta: float) -> void:
 					note.time = Utils.yPosToMs(notePrev.position.y - strumlines[i].position.y, Globals.songJson["info"]["bpm"])
 					note.length = 0
 					note.type = 0
-					note.value = int(get_global_mouse_position().x / 50) % 4
+					note.value = int((notePrev.position.x - strumlines[i].position.x) / 50) % 4
 					
 					note.position = Vector2((50 * note.value), Utils.msToYPos(note.time, Globals.songJson["info"]["bpm"]))
 					
 					note.update_note()
 
-					note.get_child(1).frame = int(get_global_mouse_position().x / 50) % 4
+					note.get_child(1).frame = int((notePrev.position.x - strumlines[i].position.x) / 50) % 4
 					strumlines[i].add_child(note)
 					
 					var index = 0
