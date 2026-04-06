@@ -132,7 +132,7 @@ func _process(delta: float) -> void:
 				if (Input.is_key_pressed(KEY_SHIFT)):
 					notePrev.position.y = get_global_mouse_position().y
 				else:
-					notePrev.position.y = floor(get_global_mouse_position().y / 50) * 50
+					notePrev.position.y = (floor(get_global_mouse_position().y / 50) * 50) - (int(Utils.msToYPos(Globals.curPosition ,Globals.songJson["info"]["bpm"])) % 50)
 				
 				notePrev.get_child(0).frame = int(get_global_mouse_position().x / 50) % 4
 				
