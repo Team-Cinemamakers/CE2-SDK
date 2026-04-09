@@ -170,6 +170,7 @@ func create_note(strumline:int):
 	note.selected = true # convenience
 
 	strumlines[strumline].add_child(note)
+	notes.append(note)
 					
 	var index = 0
 	var fuckItJusAppend:bool = false # apparently you cant simply append a note to the chart as it wont load the note in-game
