@@ -167,6 +167,7 @@ func create_note(strumline:int):
 	note.value = int((note_preview.position.x - strumlines[strumline].position.x) / 50) % 4
 					
 	note.position = Vector2((50 * note.value), Utils.msToYPos(note.time, Globals.songJson["info"]["bpm"]))
+	note.selected = true # convenience
 
 	strumlines[strumline].add_child(note)
 					
@@ -239,21 +240,15 @@ func generateNotes(noteAmt:int, strumlineId:int):
 		new_note.type = curNoteData["type"]
 		new_note.value = int(curNoteData["value"])
 		
-		# notes.append(new_note)
+		notes.append(new_note)
 		strumline.add_child(new_note)
 		
 #scrolls, will be refactored when 2D array is added
 func scrollX(scroll_amount:float): # for seeing all the strumlines and whatnot
-	for note in notes:
-		note.position.x += scroll_amount
-		
 	for strumline in strumlines:
 		strumline.position.x += scroll_amount
 
 func scrollToSong():
-	for note in notes:
-		note.position = Vector2(note.position.x, (Utils.msToYPos(Utils.stoms(inst.get_playback_position()), Globals.songJson["info"]["bpm"]) * -1) + y_offset)
-	
 	for strumline in strumlines:
 		strumline.position = Vector2(strumline.position.x, (Utils.msToYPos(Utils.stoms(inst.get_playback_position()), Globals.songJson["info"]["bpm"]) * -1) + y_offset)
 
@@ -262,10 +257,6 @@ func scrollStrumline() -> void:
 	#	square.position = Vector2(square.position.x, square.position.y + (50 * dir))
 	for strumline:Strumline in strumlines:
 		strumline.position = Vector2(strumline.position.x, (Utils.msToYPos(Globals.curPosition, Globals.songJson["info"]["bpm"]) * -1) + y_offset)
-		
-	for note:Note in notes:
-		if note != null:
-			note.position = Vector2(note.position.x, (Utils.msToYPos(Globals.curPosition, Globals.songJson["info"]["bpm"]) * -1) + y_offset)
 
 #simple is_odd function
 func is_odd(number) -> bool:
