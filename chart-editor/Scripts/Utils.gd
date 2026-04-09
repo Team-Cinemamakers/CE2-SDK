@@ -15,7 +15,7 @@ func getMsPerStep(bpm:float) -> float:
 func getTotalBeatsInSong(songLength:float) -> float:
 	return stoms(songLength) / getMsPerBeat(Globals.songJson["info"]["bpm"])
 	
-func beatsToSteps(beats:int) -> int:
+func beatsToSteps(beats:int) -> float:
 	return beats * 4
 	
 func stepsToBeats(steps:float) -> float:

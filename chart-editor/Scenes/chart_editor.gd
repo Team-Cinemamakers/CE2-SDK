@@ -148,7 +148,45 @@ func _process(_delta: float) -> void:
 		Globals.curPosition = Utils.stoms(inst.get_playback_position())
 	else:
 		scrollStrumline()
+	
+	for i in range(strumlines.size()):
+		noteOptimizing(i)
+
+func noteOptimizing(strumlineId:int):
+	purgeFarAwayNotes()
+	
+	for i in range(Globals.songJson["strumlines"][strumlineId]["notes"].size()):
+		var curNoteData = Globals.songJson["strumlines"][strumlineId]["notes"][i]
 		
+		if (curNoteData["time"] < Globals.curPosition - (Utils.getMsPerStep(Globals.songJson["info"]["bpm"]) * 24)): continue
+		
+		if (curNoteData["time"] > Globals.curPosition + (Utils.getMsPerStep(Globals.songJson["info"]["bpm"]) * 24)): break
+		
+		var noteExists = false
+		
+		for note in notes:
+			if (note.time == curNoteData["time"] && note.strumline == strumlineId):
+				noteExists = true
+				break
+				
+		if (noteExists): continue
+		
+		var new_note:Note = note_object.instantiate()
+		new_note.position = Vector2((50 * curNoteData["value"]), Utils.msToYPos(curNoteData["time"], Globals.songJson["info"]["bpm"]))
+		new_note.strumline = strumlineId
+		new_note.time = curNoteData["time"]
+		new_note.length = curNoteData["length"]
+		new_note.type = curNoteData["type"]
+		new_note.value = int(curNoteData["value"])
+		
+		notes.append(new_note)
+		strumlines[strumlineId].add_child(new_note)
+		
+func purgeFarAwayNotes():
+	for i in range(notes.size()):
+		if (notes[i].time < Globals.curPosition - (Utils.getMsPerStep(Globals.songJson["info"]["bpm"]) * 24) || notes[i].time > Globals.curPosition + (Utils.getMsPerStep(Globals.songJson["info"]["bpm"]) * 24)):
+			notes[i].queue_free()
+	
 func scroll_strumline_vertical(direction:float):
 	if !Globals.chart_ready: return
 	
