@@ -239,7 +239,7 @@ func generateNotes(noteAmt:int, strumlineId:int):
 		new_note.type = curNoteData["type"]
 		new_note.value = int(curNoteData["value"])
 		
-		notes.append(new_note)
+		# notes.append(new_note)
 		strumline.add_child(new_note)
 		
 #scrolls, will be refactored when 2D array is added
