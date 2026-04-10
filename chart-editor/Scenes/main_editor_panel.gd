@@ -13,10 +13,11 @@ extends Panel
 func _ready() -> void:
 	tabs.tab_changed.connect(_tab_changed)
 	
+	print(get_tree_string())
 	# character tab
-	$TabContainer/Characters/ItemList.item_selected.connect(_select_char)
-	$TabContainer/Characters/AddUpdateChar.pressed.connect(_add_or_update_char)
-	$TabContainer/Characters/RemoveChar.pressed.connect(_remove_char)
+	charactersTab.get_node("ItemList").item_selected.connect(_select_char)
+	charactersTab.get_node("AddUpdateChar").pressed.connect(_add_or_update_char)
+	charactersTab.get_node("RemoveChar").pressed.connect(_remove_char)
 
 func _tab_changed(id):
 	if (id == 4): # Characters
@@ -47,28 +48,29 @@ func _add_or_update_char():
 	var updateIndex = 0
 	for i in range(Globals.songJson["info"]["characters"].size()):
 		var charData = Globals.songJson["info"]["characters"][i]
-		if ($TabContainer/Characters/CharacterName.text == charData["name"]):
+		if (charactersTab.get_node("CharacterList").text == charData["name"]):
 			updateChar = true
 			updateIndex = i
 			break
 			
 	if (updateChar):
-		Globals.songJson["info"]["characters"][updateIndex]["character"] = Globals.characterList[$TabContainer/Characters/CharacterList.selected]
-		Globals.songJson["info"]["characters"][updateIndex]["positionMarker"] = $TabContainer/Characters/PositionMarker.text
+		Globals.songJson["info"]["characters"][updateIndex]["character"] = Globals.characterList[charactersTab.get_node("CharacterList").selected]
+		Globals.songJson["info"]["characters"][updateIndex]["positionMarker"] = charactersTab.get_node("PositionMarker").text
 	else:
 		Globals.songJson["info"]["characters"].append({
-			"name": $TabContainer/Characters/CharacterName.text,
-			"character": Globals.characterList[$TabContainer/Characters/CharacterList.selected],
-			"positionMarker": $TabContainer/Characters/PositionMarker.text
+			"name": charactersTab.get_node("CharacterName").text,
+			"character": Globals.characterList[charactersTab.get_node("CharacterList").selected],
+			"positionMarker": charactersTab.get_node("PositionMarker").text
 		})
 	
 	print(str(Globals.songJson["info"]["characters"]))
 	charTab()
 	
 func _remove_char():
-	Globals.songJson["info"]["characters"].remove_at($TabContainer/Characters/ItemList.get_selected_items()[0])
+	Globals.songJson["info"]["characters"].remove_at(charactersTab.get_node("ItemList").get_selected_items()[0])
 	charTab()
 
+# HELPER FUNCTIONS
 func get_index_by_name(option_button: OptionButton, button_name: String) -> int:
 	for i in range(option_button.get_item_count()):
 		if option_button.get_item_text(i) == button_name:
