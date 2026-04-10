@@ -165,7 +165,7 @@ func noteOptimizing(strumlineId:int):
 		var noteExists = false
 		
 		for note in notes:
-			if (note.time == curNoteData["time"] && note.strumline == strumlineId):
+			if (note.time == curNoteData["time"] && note.value == curNoteData["value"] && note.strumline == strumlineId):
 				noteExists = true
 				break
 				
