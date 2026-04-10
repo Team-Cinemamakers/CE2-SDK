@@ -2,6 +2,13 @@ extends Panel
 
 @onready var tabs = $TabContainer
 
+@onready var songTab = $TabContainer/Song
+@onready var noteTab = $TabContainer/Note
+@onready var eventsTab = $TabContainer/Events
+@onready var strumlinesTab = $TabContainer/Strumlines
+@onready var charactersTab = $TabContainer/Characters
+@onready var dataTab = $TabContainer/Data
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tabs.tab_changed.connect(_tab_changed)
@@ -17,8 +24,8 @@ func _tab_changed(id):
 
 # CHARACTER TAB
 func charTab():
-	var charList:ItemList = tabs.get_child(4).get_child(0)
-	var charOptionList:OptionButton = tabs.get_child(4).get_child(3)
+	var charList:ItemList = charactersTab.get_node("ItemList")
+	var charOptionList:OptionButton = charactersTab.get_node("CharacterList")
 		
 	charList.clear()
 	charOptionList.clear()
@@ -31,9 +38,9 @@ func charTab():
 		charOptionList.add_item(Globals.characterList[i])
 
 func _select_char(index):
-	$TabContainer/Characters/CharacterList.select(get_index_by_name($TabContainer/Characters/CharacterList, Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["character"]))
-	$TabContainer/Characters/CharacterName.text = Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["name"]
-	$TabContainer/Characters/PositionMarker.text = Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["positionMarker"]
+	charactersTab.get_node("CharacterList").select(get_index_by_name(charactersTab.get_node("CharacterList"), Globals.songJson["info"]["characters"][charactersTab.get_node("ItemList").get_selected_items()[0]]["character"]))
+	charactersTab.get_node("CharacterName").text = Globals.songJson["info"]["characters"][charactersTab.get_node("ItemList").get_selected_items()[0]]["name"]
+	charactersTab.get_node("PositionMarker").text = Globals.songJson["info"]["characters"][charactersTab.get_node("ItemList").get_selected_items()[0]]["positionMarker"]
 
 func _add_or_update_char():
 	var updateChar = false
