@@ -30,7 +30,7 @@ func charTab():
 	for i in range(Globals.characterList.size()):
 		charOptionList.add_item(Globals.characterList[i])
 
-func _select_char():
+func _select_char(index):
 	$TabContainer/Characters/CharacterList.select(get_index_by_name($TabContainer/Characters/CharacterList, Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["character"]))
 	$TabContainer/Characters/CharacterName.text = Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["name"]
 	$TabContainer/Characters/PositionMarker.text = Globals.songJson["info"]["characters"][$TabContainer/Characters/ItemList.get_selected_items()[0]]["positionMarker"]
